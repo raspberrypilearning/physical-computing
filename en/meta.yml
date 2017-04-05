@@ -1,10 +1,19 @@
-title: physical-computing
-hero_image: images/banner.png
-subtitle: physical-computing subtitle
-description: physical-computing description
-original_url: https://codeclubprojects.org/en-GB/scratch/rock-band
-theme: cc-prototype
+title: Physical Computing with Python
+hero_image: images/cover.png
+subtitle: Getting started with physical computing
+description: Get started with physical computing on the Raspberry Pi using Python.
+original_url: https://www.raspberrypi.org/learning/physical-computing-with-python/
+theme: rpi-prototype
 published: false
 steps:
-  - title: Step one
+  - title: Introduction
+  - title: What you will need
+  - title: "Step 1:GPIO pins"
+  - title: "Step 2:Lighting an LED"
+  - title: "Step 3:Switching an LED on and off"
+  - title: "Step 4:Flashing an LED"
+  - title: "Step 5:Using buttons to get input"
+  - title: "Step 6:Manually controlling the LED"
+  - title: "Step 7:Making a switch"
+  - title: What next?
     duration: 60
