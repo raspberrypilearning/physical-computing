@@ -1,0 +1,10 @@
+title: physical-computing
+hero_image: images/banner.png
+subtitle: physical-computing subtitle
+description: physical-computing description
+original_url: https://codeclubprojects.org/en-GB/scratch/rock-band
+theme: cc-prototype
+published: false
+steps:
+  - title: Step one
+    duration: 60
