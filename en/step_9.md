@@ -1,76 +1,39 @@
-# New project
+## Step 7: Making a switch
 
-Each project contains a set of directories for each language, you're set up now with an `en` directory that contains the necessary files to get you going.
+With a switch, a single press and release on the button would turn the LED on, and another press and release would turn it off again.
 
-* [meta.yml](#metayml)
-* [Steps - step_1.md, step_2.md, etc](#steps)
+1. Modify your code so that it looks like this:
 
+	```python
+	from gpiozero import LED, Button
+	from time import sleep
 
-## meta.yml
+	led = LED(17)
+	button = Button(2)
 
-The `meta.yml` file sets lots of basic information for the project.
+	while True:
+		button.wait_for_press()
+		led.toggle()
+	```
 
-``` yml
-title: The title of the project
-hero_image: images/banner.png # The image used on the listing view
-subtitle: Project subtitle # Used on the listing view
-description: Project description # Used on the listing view
-published: false # A boolean - `true` or`false` - that controls whether the project will appear on the listing view
-steps: # A list of all the steps
-  - title: How to get started # Used as the sidebar title for the step
-    duration: 60 # Not used yet
-```
+    `led.toggle()` switches the state of the LED from on to off, or off to on. Since this happens in a loop the LED with turn on and off each time the button is pressed.
 
-## Steps
+1. It would be great if you could make the LED switch on only when the button is being held down. With GPIO Zero, that's easy. There are two methods of the `Button` class called `when_pressed` and `when_released`. These don't block the flow of the program, so if they are placed in a loop, the program will continue to cycle indefinitely.
 
-* [Links](#links)
-* [Resources](#resources)
-* [Images](#images)
-* [Definitions](#definitions)
-* [Hints](#hints)
+1. Modify your code to look like this:
 
-Project steps are written in the [Kramdown](https://kramdown.gettalong.org/) variety of markdown. There is a [quick reference guide](https://kramdown.gettalong.org/quickref.html) and [full syntax documentation](https://kramdown.gettalong.org/syntax.html).
+    ```python
+    from gpiozero import LED, Button
+    from signal import pause
 
-### Links, resources & images
+    led = LED(17)
+    button = Button(2)
 
-See [kramdown documentation](https://kramdown.gettalong.org/quickref.html#links-and-images) for more details.
+    button.when_pressed = led.on
+    button.when_released = led.off
 
-#### Links
+    pause()
+    ```
 
-A [link](http://kramdown.gettalong.org) to the kramdown homepage.
+1. Save and run the program. Now when the button is pressed, the LED will light up. It will turn off again when the button is released.
 
-#### Resources
-
-A [link to a file in the resources directory](resources/worksheet.pdf){:download='filename.pdf'}. The download part will make the file automatically download rather than be rendered in the browser, the filename you'd like the file to be saved with is the second bit after the `=`. The `/slash learning` application will ensure the resource is available.
-
-#### Images
-
-![Banner image](images/banner.png) - the link text becomes the alternative text for the image. The `/slash learning` application will ensure the image is available.
-
-### Definitions
-
-Definitions can be written using HTML abbreviations, which are a standard part of [kramdown](https://kramdown.gettalong.org/quickref.html#abbreviations)
-
-```
-To do this you might require a variable or a two word definition.
-
-*[variable]: An object that has a name and stores a value.
-
-*[two word]: Definitions are markdown, and can have [links](http://kramdown.gettalong.org) etc
-```
-
-
-### Hints
-
-Still very much a work in progress, but here's how you could get one to work currently. The id `#hint-1` on the heading and the class `.hint-1` on the body must match up.
-
-```
-### Hint
-{: .hint-heading #hint-1 }
-
-Here's a hint of how to do this project. Just a change to force an update.
-{: .hint-content .hint-1 }
-
-And a little more text for the first hint.
-{: .hint-content .hint-1 }
-```

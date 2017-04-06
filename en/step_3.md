@@ -1,76 +1,27 @@
-# New project
+## Step 1: GPIO pins
 
-Each project contains a set of directories for each language, you're set up now with an `en` directory that contains the necessary files to get you going.
+One powerful feature of the Raspberry Pi is the row of GPIO pins along the top edge of the board. GPIO stands for General-Purpose Input/Output. These pins are a physical interface between the Raspberry Pi and the outside world. At the simplest level, you can think of them as switches that you can turn on or off (input) or that the Pi can turn on or off (output).
 
-* [meta.yml](#metayml)
-* [Steps - step_1.md, step_2.md, etc](#steps)
+The GPIO pins allow the Raspberry Pi to control and monitor the outside world by being connected to electronic circuits. The Pi is able to control LEDs, turning them on or off, run motors, and many other things. It's also able to detect whether a switch has been pressed, the temperature, and light. We refer to this as physical computing.
 
+There are 40 pins on the Raspberry Pi (26 pins on early models), and they provide various different functions.
 
-## meta.yml
+If you have a RasPiO pin label, it can help to identify what each pin is used for. Make sure your pin label is placed with the keyring hole facing the USB ports, pointed outwards.
 
-The `meta.yml` file sets lots of basic information for the project.
+![](images/raspio-ports.jpg)
 
-``` yml
-title: The title of the project
-hero_image: images/banner.png # The image used on the listing view
-subtitle: Project subtitle # Used on the listing view
-description: Project description # Used on the listing view
-published: false # A boolean - `true` or`false` - that controls whether the project will appear on the listing view
-steps: # A list of all the steps
-  - title: How to get started # Used as the sidebar title for the step
-    duration: 60 # Not used yet
-```
+If you don't have a pin label, then this guide can help you to identify the pin numbers:
 
-## Steps
+![](images/pinout.png)
 
-* [Links](#links)
-* [Resources](#resources)
-* [Images](#images)
-* [Definitions](#definitions)
-* [Hints](#hints)
+You'll see pins labelled as 3V3, 5V, GND and GP2, GP3, etc:
 
-Project steps are written in the [Kramdown](https://kramdown.gettalong.org/) variety of markdown. There is a [quick reference guide](https://kramdown.gettalong.org/quickref.html) and [full syntax documentation](https://kramdown.gettalong.org/syntax.html).
+|   |   |   |
+|---|---|---|
+| 3V3 | 3.3 volts | Anything connected to these pins will always get 3.3V of power |
+| 5V | 5 volts | Anything connected to these pins will always get 5V of power |
+| GND | ground | Zero volts, used to complete a circuit |
+| GP2 | GPIO pin 2 | These pins are for general-purpose use and can be configured as input or output pins |
+| ID_SC/ID_SD/DNC | Special purpose pins ||
 
-### Links, resources & images
-
-See [kramdown documentation](https://kramdown.gettalong.org/quickref.html#links-and-images) for more details.
-
-#### Links
-
-A [link](http://kramdown.gettalong.org) to the kramdown homepage.
-
-#### Resources
-
-A [link to a file in the resources directory](resources/worksheet.pdf){:download='filename.pdf'}. The download part will make the file automatically download rather than be rendered in the browser, the filename you'd like the file to be saved with is the second bit after the `=`. The `/slash learning` application will ensure the resource is available.
-
-#### Images
-
-![Banner image](images/banner.png) - the link text becomes the alternative text for the image. The `/slash learning` application will ensure the image is available.
-
-### Definitions
-
-Definitions can be written using HTML abbreviations, which are a standard part of [kramdown](https://kramdown.gettalong.org/quickref.html#abbreviations)
-
-```
-To do this you might require a variable or a two word definition.
-
-*[variable]: An object that has a name and stores a value.
-
-*[two word]: Definitions are markdown, and can have [links](http://kramdown.gettalong.org) etc
-```
-
-
-### Hints
-
-Still very much a work in progress, but here's how you could get one to work currently. The id `#hint-1` on the heading and the class `.hint-1` on the body must match up.
-
-```
-### Hint
-{: .hint-heading #hint-1 }
-
-Here's a hint of how to do this project. Just a change to force an update.
-{: .hint-content .hint-1 }
-
-And a little more text for the first hint.
-{: .hint-content .hint-1 }
-```
+**WARNING**: If you follow the instructions, then playing about with the GPIO pins is safe and fun. Randomly plugging wires and power sources into your Pi, however, may destroy it, especially if using the 5V pins. Bad things can also happen if you try to connect things to your Pi that use a lot of power; LEDs are fine, motors are not. If you're worried about this, then you might want to consider using an add-on board such as the [Explorer HAT](https://shop.pimoroni.com/products/explorer-hat) until you're confident enough to use the GPIO directly.
