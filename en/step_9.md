@@ -22,18 +22,18 @@ With a switch, a single press and release on the button would turn the LED on, a
 
 1. Modify your code to look like this:
 
-  ```python
-  from gpiozero import LED, Button
-  from signal import pause
-  
-  led = LED(17)
-  button = Button(2)
-  
-  button.when_pressed = led.on
-  button.when_released = led.off
-  
-  pause()
-  ```
+    ```python
+    from gpiozero import LED, Button
+    from signal import pause
+    
+    led = LED(17)
+    button = Button(2)
+    
+    button.when_pressed = led.on
+    button.when_released = led.off
+    
+    pause()
+    ```
 
 1. Save and run the program. Now when the button is pressed, the LED will light up. It will turn off again when the button is released.
 
