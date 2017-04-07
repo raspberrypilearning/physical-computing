@@ -12,17 +12,17 @@ Now you're able to control an output component (an LED), let's connect and contr
 
 1. This time you'll need the `Button` class, and to tell it that the button is on pin 2. Write the following code in your new file:
 
-~~~ python
-from gpiozero import Button
-button = Button(2)
-~~~
+  ```python
+  from gpiozero import Button
+  button = Button(2)
+  ```
 
 1. Now you can get your program to do something when the button is pushed. Add these lines:
 
-~~~ python
-button.wait_for_press()
-print('You pushed me')
-~~~
+  ```python
+  button.wait_for_press()
+  print('You pushed me')
+  ```
 
 1. Save with **Ctrl + S** and run the code with **F5**. 
 1. Press the button and your text will appear. 
