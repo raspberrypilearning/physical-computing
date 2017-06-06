@@ -5,6 +5,7 @@ description: Get started with physical computing on the Raspberry Pi using Pytho
 original_url: https://www.raspberrypi.org/learning/physical-computing-with-python/
 theme: rpi-prototype
 published: true
+ingredient: false
 steps:
   - title: Introduction
   - title: What you will need
