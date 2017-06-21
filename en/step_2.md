@@ -4,7 +4,7 @@
 
 As well as a Raspberry Pi with an SD card and the usual peripherals, you'll also need:
 
-|2x Crocodile clip cables | Male-to-female jumper leads | Female-to-female jumper leads | Male-to-male jumper leads |
+|1x Solderless breadboard | Male-to-female jumper leads | Female-to-female jumper leads | Male-to-male jumper leads |
 |:--------:|:-------:|:--------:|:--------:|
 |   [![breadboard](images/breadboard.png)](https://www.raspberrypi.org/learning/physical-computing-with-python/components/breadboard/)  |[![m to f jumper leads](images/jumper-male-to-female.png)](https://www.raspberrypi.org/learning/physical-computing-with-python/components/jumper-male-to-female/)  |[![f to f jumper leads](images/jumper-female-to-female.png)](https://www.raspberrypi.org/learning/physical-computing-with-python/components/jumper-female-to-female/)  |[![m to m jumper leads](images/jumper-male-to-male.png)](https://www.raspberrypi.org/learning/physical-computing-with-python/components/jumper-male-to-male/)  |
 
