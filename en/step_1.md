@@ -6,7 +6,7 @@ In this resource you will learn how to use the GPIO pins on your Raspberry Pi to
 
 By working through this resource, you will learn how to use Python and GPIO Zero to control:
 
-- [LEDs and buttons](https://learning.raspberrypi.org/en/projects/physical-computing)
+- [LEDs and buttons](https://projects.raspberrypi.org/en/projects/physical-computing)
 - [an active buzzer](https://www.raspberrypi.org/learning/physical-computing-with-python/buzzer.md)  
 - [traffic lights](https://www.raspberrypi.org/learning/physical-computing-with-python/trafficlights.md)  
 - [a light-dependent resistor](https://www.raspberrypi.org/learning/physical-computing-with-python/ldr.md)  
