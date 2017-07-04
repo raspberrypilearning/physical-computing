@@ -3,7 +3,7 @@ hero_image: images/cover.png
 subtitle: Getting started with physical computing
 description: Get started with physical computing on the Raspberry Pi using Python.
 original_url: https://www.raspberrypi.org/learning/physical-computing-with-python/
-theme: rpi-prototype
+theme: green
 listed: true
 ingredient: false
 steps:
