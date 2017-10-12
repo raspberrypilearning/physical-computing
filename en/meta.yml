@@ -4,17 +4,26 @@ subtitle: Getting started with physical computing
 description: Get started with physical computing on the Raspberry Pi using Python.
 original_url: https://www.raspberrypi.org/learning/physical-computing-with-python/
 theme: green
+duration: 2
+copyedit: true
 listed: true
 ingredient: false
+curriculum: creator, design-0, programming-1, phys-comp-1, manufacture-0, community-0
+technologies: python
 steps:
   - title: Introduction
   - title: What you will need
-  - title: "Step 1:GPIO pins"
-  - title: "Step 2:Lighting an LED"
-  - title: "Step 3:Switching an LED on and off"
-  - title: "Step 4:Flashing an LED"
-  - title: "Step 5:Using buttons to get input"
-  - title: "Step 6:Manually controlling the LED"
-  - title: "Step 7:Making a switch"
-  - title: What next?
-    duration: 60
+  - title: GPIO pins
+  - title: Lighting an LED
+  - title: Switching an LED on and off
+  - title: Flashing an LED
+  - title: Using buttons to get input
+  - title: Manually controlling the LED
+  - title: Making a switch
+  - title: Using a buzzer
+  - title: Making traffic lights
+  - title: Using a light-dependent resistor
+  - title: Using a PIR sensor
+  - title: Using an ultrasonic distance sensor
+  - title: Analogue inputs
+  - title: Using motors

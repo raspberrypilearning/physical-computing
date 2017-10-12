@@ -1,11 +1,44 @@
-## What next?
+## Using a buzzer
 
-There are lots of other things you can control or monitor with your Raspberry Pi. Have a look at the worksheets below, to see how easily this can be done.
+There are two main types of buzzer: *active* and *passive*.
 
-- [Using an active buzzer](https://www.raspberrypi.org/learning/physical-computing-with-python/buzzer.md)  
-- [Making traffic lights](https://www.raspberrypi.org/learning/physical-computing-with-python/trafficlights.md)  
-- [Using a light-dependent resistor](https://www.raspberrypi.org/learning/physical-computing-with-python/ldr.md)  
-- [Using a PIR Sensor](https://www.raspberrypi.org/learning/physical-computing-with-python/pir.md)  
-- [Using an ultrasonic distance sensor](https://www.raspberrypi.org/learning/physical-computing-with-python/distance.md)
-- [Analogue inputs](https://www.raspberrypi.org/learning/physical-computing-with-python/analogue.md)
-- [Using motors](https://www.raspberrypi.org/learning/physical-computing-with-python/motors.md)
+A *passive* buzzer emits a tone when a voltage is applied across it. It also requires a specific signal to generate a variety of tones. The *active* buzzers are a lot simpler to use, so these are covered here.
+
+### Connecting a buzzer
+
+An *active* buzzer can be connected just like an LED, but as they are a little more robust, you won't be needing a resistor to protect them.
+
+Set up the circuit as shown below:
+
+![buzzer](images/buzzer-circuit.png)
+
++ Add `Buzzer` to the `from gpiozero import...` line:
+
+    ```python
+    from gpiozero import Buzzer
+	from time import sleep
+    ```
+
++ Add a line below your creation of `button` and `lights` to add a `Buzzer` object:
+
+    ```python
+    buzzer = Buzzer(17)
+    ```
+
++ In GPIO Zero, a `Buzzer` works exactly like an `LED`, so try adding a `buzzer.on()` and `buzzer.off()` into your loop:
+
+    ```python
+    while True:
+        buzzer.on()
+	    sleep(1)
+        buzzer.off()
+		sleep(1)
+
+    ```
+
++ A `Buzzer` has a `beep()` method which works like an `LED`'s `blink`. Try it out:
+
+    ```python
+    while True:
+        buzzer.beep()
+    ```

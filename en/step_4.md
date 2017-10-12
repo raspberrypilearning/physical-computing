@@ -1,4 +1,4 @@
-## Step 2: Lighting an LED
+## Lighting an LED
 
 LEDs are delicate little things. If you put too much current through them they will pop (sometimes quite spectacularly). To limit the current going through the LED, you should always use a resistor in series with it.
 
