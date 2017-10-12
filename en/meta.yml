@@ -20,4 +20,10 @@ steps:
   - title: Using buttons to get input
   - title: Manually controlling the LED
   - title: Making a switch
-  - title: What next?
+  - title: Using a buzzer
+  - title: Making traffic lights
+  - title: Using a light-dependent resistor
+  - title: Using a PIR sensor
+  - title: Using an ultrasonic distance sensor
+  - title: Analogue inputs
+  - title: Using motors
