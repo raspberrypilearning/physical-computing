@@ -22,4 +22,4 @@ As well as a Raspberry Pi with an SD card and the usual peripherals, you'll also
 
 ### Software
 
-There are no additional software requirements for this resource beyond what is pre-installed in the current Raspbian image. To make sure your SD card is up-to-date, see the [updating Raspbian guide](https://www.raspberrypi.org/documentation/raspbian/updating.md).
+There are no additional software requirements for this resource beyond what is pre-installed in the current Raspbian image. To make sure your SD card is up-to-date, see the [updating Raspbian guide](https://www.raspberrypi.org/documentation/raspbian/updating.md){:target="_blank"}.
