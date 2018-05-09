@@ -168,7 +168,7 @@ So far, you have used simple on/off commands to control your motors. PWM (pulse-
         speed = i / 10
         print(speed)
         a.value = speed
-        b.value = speed
+        c.value = speed
     ```
 
     The motors should now speed up from 0 (stopped) to 0.1, 0.2 and up to 1.
