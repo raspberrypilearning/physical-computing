@@ -12,9 +12,9 @@ As well as a Raspberry Pi with an SD card and the usual peripherals, you'll also
 |:--------:|:-------:|:--------:|:--------:|
 | ![tactile button](images/tactile-push-button.png) | ![LED](images/led.png) | ![ultrasonic distance sensor](images/ultrasonic-distance-sensor.png) | ![PIR sensor](images/pir.png) |
 
-| Light Dependent Resistor | 2x 5V Micro Metal Gearmotor | 3x 330Ω Resistor| 470Ω Resistor |
+| Light Dependent Resistor | 5V Motor | 3x 330Ω Resistor| 470Ω Resistor |
 |:--------:|:-------:|:--------:|:--------:|
-| ![LDR](images/ldr.png) | ![motor](images/motor.png) | ![330 resistor](images/resistor-330r.png) | ![470 resistor](images/resistor-470r.png) |
+| ![LDR](images/ldr.png) | ![motor](images/motor2.png) | ![330 resistor](images/resistor-330r.png) | ![470 resistor](images/resistor-470r.png) |
 
 | 1x 1μF Capacitor | Buzzer | Motor Controller | Battery Pack |
 |:--------:|:-------:|:--------:|:--------:|
