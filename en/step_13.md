@@ -1,42 +1,118 @@
-## Using a PIR sensor
+## Using an ultrasonic distance sensor
 
-Humans and other animals emit radiation all the time. This is nothing to be concerned about, though, as the type of radiation we emit is infrared radiation (IR), which is pretty harmless at the levels at which it is emitted by humans. In fact, all objects at temperatures above absolute zero (-273.15C) emit infrared radiation.
+In air, sound travels at a speed of 343 metres per second. An ultrasonic distance sensor sends out pulses of ultrasound which are inaudible to humans, and detects the echo that is sent back when the sound bounces off a nearby object. It then uses the speed of sound to calculate the distance from the object.
 
-A PIR sensor detects changes in the amount of infrared radiation it receives. When there is a significant change in the amount of infrared radiation it detects, then a pulse is triggered. This means that a PIR sensor can detect when a human (or any animal) moves in front of it.
+![Ultrasonic distance sensor](images/ultrasonic-distance-sensor.png)
 
-![pir](images/pir_module.png)
+### Wiring
 
-### Wiring a PIR sensor
+The circuit connects to two GPIO pins (one for echo, one for trigger), the ground pin, and a 5V pin. You'll need to use a pair of resistors (330Ω and 470Ω) as a potential divider:
 
-The pulse emitted when a PIR detects motion needs to be amplified, and so it needs to be powered. There are three pins on the PIR: they should be labelled **Vcc**, **Gnd**, and **Out**. These labels are sometimes concealed beneath the Fresnel lens (the white cap), which you can temporarily remove to see the pin labels.
+![wiring](images/wiring-uds.png)
 
-![wiring](images/pir_wiring.png)
+### Code
 
-1. As shown above, the **Vcc** pin needs to be attached to a **5V** pin on the Raspberry Pi.
-1. The **Gnd** pin on the PIR sensor can be attached to **any** ground pin on the Raspberry Pi.
-1. Lastly, the **Out** pin needs to be connected to **any** of the GPIO pins.
+To use the ultrasonic distance sensor in Python, you need to know which GPIO pins the echo and trigger are connected to.
 
-### Tuning a PIR
++ Open Python 3.
 
-Most PIR sensors have two potentiometers on them. These can control the sensitivity of the sensors, and also the period of time for which the PIR will signal when motion is detected.
++ In the shell, enter the following line to import `DistanceSensor` from the GPIO Zero library:
 
-![pir pots](images/pir_pots.jpg)
+    ```python
+    from gpiozero import DistanceSensor
+    ```
 
-In the image above, the potentiometer on the right controls the sensitivity, and the potentiometer on the left controls the timeout. Here, both are turned fully anti-clockwise, meaning that the sensitivity and timeout are at their lowest.
+    After each line, press **Enter** and the command will be executed immediately.
 
-When the timeout is turned fully anti-clockwise, the PIR will output a signal for about 2.5 seconds, whenever motion is detected. If the potentiometer is turned fully clockwise, the output signal will last for around 250 seconds. When tuning the sensitivity, it is best to have the timeout set as low as possible.
++ Create an instance of `DistanceSensor` using your echo and trigger pins:
 
-### Detecting motion
+    ```python
+    ultrasonic = DistanceSensor(echo=17, trigger=4)
+    ```
 
-You can detect motion with the PIR using the code below:
++ See what distance it shows:
 
-```python
-from gpiozero import MotionSensor
+    ```python
+    ultrasonic.distance
+    ```
 
-pir = MotionSensor(4)
+    You should see a number: this is the distance to the nearest object, in metres.
 
-while True:
-	pir.wait_for_motion()
-	print("You moved")
-	pir.wait_for_no_motion()
-```
++ Try using a loop to print the distance continuously, while waving your hand in front of the sensor to alter the distance reading:
+
+    ```python
+    while True:
+        print(ultrasonic.distance)
+    ```
+
+    The value should get smaller the closer your hand is to the sensor. Press **Ctrl + C** to exit the loop.
+
+### Ranges
+
+As well as being able to see the distance value, you can also get the sensor to do things when the object is in or out of a certain range.
+
++ Use a loop to print different messages when the sensor is in range or out of range:
+
+    ```python
+    while True:
+        ultrasonic.wait_for_in_range()
+        print("In range")
+        ultrasonic.wait_for_out_of_range()
+        print("Out of range")
+    ```
+
+    Now wave your hand in front of the sensor; it should switch between showing the message "In range" and "Out of range" as your hand gets closer and further away from the sensor. See if you can work out the point at which it changes.
+
++ The default range threshold is 0.3m. This can be configured when the sensor is initiated:
+
+    ```python
+    ultrasonic = DistanceSensor(echo=17, trigger=4, threshold_distance=0.5)
+    ```
+
+    Alternatively, this can be changed after the sensor is created, by setting the `threshold_distance` property:
+
+    ```python
+    ultrasonic.threshold_distance = 0.5
+    ```
+
++ Try the previous loop again and observe the new range threshold.
+
++ The `wait_for` functions are **blocking**, which means they halt the program until they are triggered. Another way of doing something when the sensor goes in and out of range is to use `when` properties, which can be used to trigger actions in the background while other things are happening in the code.
+
+    First, you need to create a function for what you want to happen when the sensor is in range:
+
+    ```python
+    def hello():
+        print("Hello")
+    ```
+
+    Then set `ultrasonic.when_in_range` to the name of this function:
+
+    ```python
+    ultrasonic.when_in_range = hello
+    ```
+
++ Add another function for when the sensor goes out of range:
+
+    ```python
+    def bye():
+        print("Bye")
+
+    ultrasonic.when_out_of_range = bye
+    ```
+
+    Now these triggers are set up, you'll see "hello" printed when your hand is in range, and "bye" when it's out of range.
+
++ You may have noticed that the sensor distance stopped at 1 metre. This is the default maximum and can also be configured on setup:
+
+    ```python
+    ultrasonic = DistanceSensor(echo=17, trigger=4, max_distance=2)
+    ```
+
+    Or after setup:
+
+    ```python
+    ultrasonic.max_distance = 2
+    ```
+
++ Try different values of `max_distance` and `threshold_distance`.

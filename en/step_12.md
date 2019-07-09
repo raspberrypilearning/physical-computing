@@ -1,66 +1,42 @@
-## Using a light-dependent resistor
+## Using a PIR sensor
 
-### Analogue inputs
+Humans and other animals emit radiation all the time. This is nothing to be concerned about, though, as the type of radiation we emit is infrared radiation (IR), which is pretty harmless at the levels at which it is emitted by humans. In fact, all objects at temperatures above absolute zero (-273.15C) emit infrared radiation.
 
-In the world of electrical engineering, there are two type of input and output (I/O): analogue and digital. Digital I/O is fairly easy to understand; it's either *on* or *off*, *1* or *0*.
+A PIR sensor detects changes in the amount of infrared radiation it receives. When there is a significant change in the amount of infrared radiation it detects, then a pulse is triggered. This means that a PIR sensor can detect when a human (or any animal) moves in front of it.
 
-When talking about voltages and the Raspberry Pi, any input that is approximately below 1.8V is considered *off* and anything above 1.8V is considered *on*. For output, 0V is off and 3.3V is on.
+![pir](images/pir_module.png)
 
-Analogue I/O is a little trickier. With an analogue input, we can have a range of voltages from 0V up to 3.3V, and the Raspberry Pi is unable to detect exactly what that voltage is.
+### Wiring a PIR sensor
 
-![](images/analogue-digital.png)
+The pulse emitted when a PIR detects motion needs to be amplified, and so it needs to be powered. There are three pins on the PIR: they should be labelled **Vcc**, **Gnd**, and **Out**. These labels are sometimes concealed beneath the Fresnel lens (the white cap), which you can temporarily remove to see the pin labels.
 
-How, then, can we use a Raspberry Pi to determine the value of an analogue input, if it can only tell when the voltage to a GPIO pin goes above 1.8V?
+![wiring](images/pir_wiring.png)
 
-### Using a capacitor for analogue inputs
+1. As shown above, the **Vcc** pin needs to be attached to a **5V** pin on the Raspberry Pi.
+1. The **Gnd** pin on the PIR sensor can be attached to **any** ground pin on the Raspberry Pi.
+1. Lastly, the **Out** pin needs to be connected to **any** of the GPIO pins.
 
-Capacitors are electrical components that store charge.
+### Tuning a PIR
 
-![](images/capacitor.png)
+Most PIR sensors have two potentiometers on them. These can control the sensitivity of the sensors, and also the period of time for which the PIR will signal when motion is detected.
 
-When current is fed into a capacitor, it will begin to store charge. The voltage across the capacitor will start off low, and increase as the charge builds up.
+![pir pots](images/pir_pots.jpg)
 
-By putting a resistor in series with the capacitor, you can slow the speed at which it charges. With a high resistance, the capacitor will charge slowly, whereas a low resistance will let it charge quickly.
+In the image above, the potentiometer on the right controls the sensitivity, and the potentiometer on the left controls the timeout. Here, both are turned fully anti-clockwise, meaning that the sensitivity and timeout are at their lowest.
 
-If you time how long it takes the capacitor's voltage to get over 1.8V (or be *on*), you can work out the resistance of the component in series with it.
+When the timeout is turned fully anti-clockwise, the PIR will output a signal for about 2.5 seconds, whenever motion is detected. If the potentiometer is turned fully clockwise, the output signal will last for around 250 seconds. When tuning the sensitivity, it is best to have the timeout set as low as possible.
 
-### Light-dependent resistors
+### Detecting motion
 
-An LDR (sometimes called a photocell) is a special type of resistor.
-
-![](images/ldr.png)
-
-When light hits the LDR, its resistance is very low, but when it's in the dark its resistance is very high.
-
-By placing a capacitor in series with an LDR, the capacitor will charge at different speeds depending on whether it's light or dark.
-
-### Creating a light-sensing circuit
-
-+  Place an LDR into your breadboard, as shown below:
-
-![](images/Laser-tripwire_1-01.png)
-
-+  Now place a capacitor in series with the LDR. As the capacitor is a polar component, you must make sure the long leg is on the same track as the LDR leg.
-
-![](images/Laser-tripwire_2-01.png)
-
-+  Finally, add jumper leads to connect the two components to your Raspberry Pi.
-
-![](images/Laser-tripwire_3-01.png)
-
-### Coding a light sensor
-
-Luckily, most of the complicated code you would have to write to detect the light levels received by the LDR has been abstracted away by the `gpiozero` library. This library will handle the timing of the capacitor's charging and discharging for you.
-
-Use the following code to set up the light sensor:
+You can detect motion with the PIR using the code below:
 
 ```python
-  from gpiozero import LightSensor, Buzzer
+from gpiozero import MotionSensor
 
-  ldr = LightSensor(4)  # alter if using a different pin
-  while True:
-      print(ldr.value)
+pir = MotionSensor(4)
 
+while True:
+	pir.wait_for_motion()
+	print("You moved")
+	pir.wait_for_no_motion()
 ```
-
-Run this code, then cover the LDR with your hand and watch the value change. Try shining a strong light onto the LDR.

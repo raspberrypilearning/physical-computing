@@ -1,26 +1,29 @@
-## Flashing an LED
+## Using buttons to get input
 
-With the help of the `time` library and a little loop, you can make the LED flash.
+Now you're able to control an output component (an LED), let's connect and control an input component: a button.
+
++ Connect a button to another GND pin and GPIO pin 2, like this:
+
+    ![](images/button.png)
 
 + Create a new file by clicking **File > New file**.
 
-+ Save the new file by clicking **File > Save**. Save the file as `gpio_led.py`.
++ Save the new file by clicking **File > Save**. Save the file as `gpio_button.py`.
 
-+ Enter the following code to get started:
++ This time you'll need the `Button` class, and to tell it that the button is on pin 2. Write the following code in your new file:
 
     ```python
-    from gpiozero import LED
-    from time import sleep
+    from gpiozero import Button
+    button = Button(2)
+    ```
 
-    led = LED(17)
++ Now you can get your program to do something when the button is pushed. Add these lines:
 
-    while True:
-        led.on()
-        sleep(1)
-        led.off()
-        sleep(1)
+    ```python
+    button.wait_for_press()
+    print('You pushed me')
     ```
 
 + Save with **Ctrl + S** and run the code with **F5**.
 
-+ The LED should be flashing on and off. To exit the program press **Ctrl + C** on your keyboard.
++ Press the button and your text will appear.

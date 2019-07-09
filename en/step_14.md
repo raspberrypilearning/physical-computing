@@ -1,118 +1,181 @@
-## Using an ultrasonic distance sensor
+## Analogue inputs
 
-In air, sound travels at a speed of 343 metres per second. An ultrasonic distance sensor sends out pulses of ultrasound which are inaudible to humans, and detects the echo that is sent back when the sound bounces off a nearby object. It then uses the speed of sound to calculate the distance from the object.
+The Raspberry Pi's GPIO pins are digital pins, so you can only set outputs to high or low, or read inputs as high or low. However, using an ADC chip (Analogue-to-Digital converter), you can read the value of analogue input devices such as potentiometers.
 
-![Ultrasonic distance sensor](images/ultrasonic-distance-sensor.png)
+### SPI
 
-### Wiring
+The analogue values are communicated to the Pi using the SPI protocol. While this will work in GPIO Zero out of the box, you may get better results if you enable full SPI support.
 
-The circuit connects to two GPIO pins (one for echo, one for trigger), the ground pin, and a 5V pin. You'll need to use a pair of resistors (330Ω and 470Ω) as a potential divider:
++ Open a terminal window and install the `spidev` package:
 
-![wiring](images/wiring-uds.png)
+    ```bash
+    sudo apt-get install python3-spidev python-spidev
+    ```
+
++ Open the **Raspberry Pi Configuration** dialogue from the main menu and enable **SPI** in the **Interfaces** tab:
+
+    ![Enable SPI](images/rcgui.png)
+
++ Click **OK** and reboot the Pi.
+
+### Wiring the ADC (MCP3008)
+
+The MCP3008 is an ADC providing eight input channels. The eight connectors on one side are connected to the Pi's GPIO pins, and the other eight are available to connect analogue input devices to read their values.
+
+Place the MCP3008 chip on a breadboard and carefully wire it up as shown in the following diagram. You should see a small notch, or dot, in one end of the chip. In the diagram, this end of the chip is alligned with column **19** on the breadboard.
+
+![MCP3008 wiring](images/mcp3008.png)
+
+Alternatively, you could use the [Analog Zero](http://rasp.io/analogzero/) board, which provides the MCP3008 chip on a handy add-on board to save you from the complicated wiring.
+
+### Add a potentiometer
+
+Now that the ADC is connected to the Pi, you can wire devices up to the input channels. A potentiometer is a good example of an analogue input device: it's simply a variable resistor, and the Pi reads the voltage (from 0V to 3.3V).
+
+![Potentiometer](images/potentiometer.jpg)
+
+A potentiometer's pins are ground, data, and 3V3. This means you connect it to ground and a supply of 3V3, and read the actual voltage from the middle pin.
+
++ Place a potentiometer on the breadboard and wire one side to the ground rail, the other to the 3V3 rail, and the middle pin to the first input channel as shown:
+
+    ![Add a potentiometer](images/mcp3008-pot.png)
 
 ### Code
 
-To use the ultrasonic distance sensor in Python, you need to know which GPIO pins the echo and trigger are connected to.
+Now your potentiometer is connected and its value can be read from Python!
 
-+ Open Python 3.
++ Open **Python 3** from the main menu.
 
-+ In the shell, enter the following line to import `DistanceSensor` from the GPIO Zero library:
-
-    ```python
-    from gpiozero import DistanceSensor
-    ```
-
-    After each line, press **Enter** and the command will be executed immediately.
-
-+ Create an instance of `DistanceSensor` using your echo and trigger pins:
++ In the shell, start by importing the `MCP3008` class from the GPIO Zero library:
 
     ```python
-    ultrasonic = DistanceSensor(echo=17, trigger=4)
+    from gpiozero import MCP3008
     ```
 
-+ See what distance it shows:
++ Create an object representing your analogue device:
 
     ```python
-    ultrasonic.distance
+    pot = MCP3008(0)
     ```
 
-    You should see a number: this is the distance to the nearest object, in metres.
+    Note the `0` represents the ADC's channel 0. There are 8 channels (0 to 7), and you're using the first one.
 
-+ Try using a loop to print the distance continuously, while waving your hand in front of the sensor to alter the distance reading:
++ Try to read its value:
 
     ```python
-    while True:
-        print(ultrasonic.distance)
+    print(pot.value)
     ```
 
-    The value should get smaller the closer your hand is to the sensor. Press **Ctrl + C** to exit the loop.
+    You should see a number between 0 and 1. This represents how far the dial is turned.
 
-### Ranges
-
-As well as being able to see the distance value, you can also get the sensor to do things when the object is in or out of a certain range.
-
-+ Use a loop to print different messages when the sensor is in range or out of range:
++ Now read the value in a loop:
 
     ```python
     while True:
-        ultrasonic.wait_for_in_range()
-        print("In range")
-        ultrasonic.wait_for_out_of_range()
-        print("Out of range")
+        print(pot.value)
     ```
 
-    Now wave your hand in front of the sensor; it should switch between showing the message "In range" and "Out of range" as your hand gets closer and further away from the sensor. See if you can work out the point at which it changes.
+    Try twisting the dial around to see the value change.
 
-+ The default range threshold is 0.3m. This can be configured when the sensor is initiated:
+### PWMLED
+
+Now you've tested you can read values from the potentiometer, you should connect it to another GPIO device.
+
++ Add an LED to your breadboard and wire it to the Pi, connecting it to GPIO pin 21:
+
+    ![Add LED](images/mcp3008-pot-led.png)
+
++ In your Python code, start by importing the `PWMLED` class:
 
     ```python
-    ultrasonic = DistanceSensor(echo=17, trigger=4, threshold_distance=0.5)
+    from gpiozero import PWMLED
     ```
 
-    Alternatively, this can be changed after the sensor is created, by setting the `threshold_distance` property:
+    The `PWMLED` class lets you control the brightness of an LED using PWM, or pulse-width modulation.
+
++ Create a `PWMLED` object on pin 21:
 
     ```python
-    ultrasonic.threshold_distance = 0.5
+    led = PWMLED(21)
     ```
 
-+ Try the previous loop again and observe the new range threshold.
-
-+ The `wait_for` functions are **blocking**, which means they halt the program until they are triggered. Another way of doing something when the sensor goes in and out of range is to use `when` properties, which can be used to trigger actions in the background while other things are happening in the code.
-
-    First, you need to create a function for what you want to happen when the sensor is in range:
++ Test you can control the LED manually:
 
     ```python
-    def hello():
-        print("Hello")
+    led.on()  # the led should be lit
+    led.off()  # the led should go off
+    led.value = 0.5  # the led should be lit at half brightness
     ```
 
-    Then set `ultrasonic.when_in_range` to the name of this function:
++ Now connect the LED to the potentiometer:
 
     ```python
-    ultrasonic.when_in_range = hello
+    led.source = pot.values
     ```
 
-+ Add another function for when the sensor goes out of range:
++ Turn the dial to change the LED brightness!
+
+### Source and values
+
+GPIO Zero has a powerful feature: **source and values**. Every device has a `value` property (the current value) and a `values` property (a stream of the device's values at all times). Every output device has a `source` property which can be used to set what the device's value should be.
+
+- `pot.value` gives the potentiometer's current value (it's read only, as it's an input device)
+- `led.value` is the LED's current value (it's read/write: you can see what it is, and you can change it)
+- `pot.values` is a generator constantly yielding the potentiometer's current value
+- `led.source` is a way of setting where the LED gets its values from
+
+Rather than continuously setting the value of the LED to the value of the potentiometer in a loop, you can just pair the two devices. Therefore the line `led.source = pot.values` is equivalent to the following loop:
+
+```python
+while True:
+    led.value = pot.value
+```
+
+### Multiple potentiometers
+
++ Add a second potentiometer to your breadboard and connect it to the ADC's channel 1:
+
+    ![Second potentiometer](images/mcp3008-2pots-led.png)
+
++ Now create a second `MCP3008` object on channel 1:
 
     ```python
-    def bye():
-        print("Bye")
-
-    ultrasonic.when_out_of_range = bye
+    pot2 = MCP3008(1)
     ```
 
-    Now these triggers are set up, you'll see "hello" printed when your hand is in range, and "bye" when it's out of range.
-
-+ You may have noticed that the sensor distance stopped at 1 metre. This is the default maximum and can also be configured on setup:
++ Make the LED blink:
 
     ```python
-    ultrasonic = DistanceSensor(echo=17, trigger=4, max_distance=2)
+    led.blink()
     ```
 
-    Or after setup:
+    The LED will blink continuously, one second on and one second off.
+
++ Change the `on_time` and `off_time` parameters to make it blink faster or slower:
 
     ```python
-    ultrasonic.max_distance = 2
+    led.blink(on_time=2, off_time=2)
+    led.blink(on_time=0.5, off_time=0.1)
     ```
 
-+ Try different values of `max_distance` and `threshold_distance`.
++ Now use a loop to change the blink times according to the potentiometer values:
+
+    ```python
+    while True:
+        print(pot.value, pot2.value)
+        led.blink(on_time=pot.value, off_time=pot2.value, n=1, background=False)
+    ```
+
+    Note you have to make it blink once in the foreground, so that each iteration gets time to finish before it updates the blink times.
+
++ Rotate the dials to make it blink at different speeds!
+
++ Also try changing `blink` to `pulse` and change `on_time` and `off_time` to `fade_in_time` and `fade_out_time` so that it fades in and out at different speeds, rather than just blinking on and off:
+
+    ```python
+    while True:
+        print(pot.value, pot2.value)
+        led.pulse(fade_in_time=pot.value, fade_out_time=pot2.value, n=1, background=False)
+    ```
+
++ Rotate the dials to change the effect.
