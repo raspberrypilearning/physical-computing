@@ -1,39 +1,44 @@
-## Making a switch
+## Using a buzzer
 
-With a switch, a single press and release on the button would turn the LED on, and another press and release would turn it off again.
+There are two main types of buzzer: *active* and *passive*.
 
-+ Modify your code so that it looks like this:
+A *passive* buzzer emits a tone when a voltage is applied across it. It also requires a specific signal to generate a variety of tones. The *active* buzzers are a lot simpler to use, so these are covered here.
+
+### Connecting a buzzer
+
+An *active* buzzer can be connected just like an LED, but as they are a little more robust, you won't be needing a resistor to protect them.
+
+Set up the circuit as shown below:
+
+![buzzer](images/buzzer-circuit.png)
+
++ Add `Buzzer` to the `from gpiozero import...` line:
 
     ```python
-    from gpiozero import LED, Button
-    from time import sleep
+    from gpiozero import Buzzer
+	from time import sleep
+    ```
 
-    led = LED(17)
-    button = Button(2)
++ Add a line below your creation of `button` and `lights` to add a `Buzzer` object:
 
+    ```python
+    buzzer = Buzzer(17)
+    ```
+
++ In GPIO Zero, a `Buzzer` works exactly like an `LED`, so try adding a `buzzer.on()` and `buzzer.off()` into your loop:
+
+    ```python
     while True:
-        button.wait_for_press()
-        led.toggle()
-        sleep(0.5)
+        buzzer.on()
+	    sleep(1)
+        buzzer.off()
+		sleep(1)
+
     ```
 
-    `led.toggle()` switches the state of the LED from on to off, or off to on. Since this happens in a loop the LED will turn on and off each time the button is pressed.
-
-+ It would be great if you could make the LED switch on only when the button is being held down. With GPIO Zero, that's easy. There are two methods of the `Button` class called `when_pressed` and `when_released`. These don't block the flow of the program, so if they are placed in a loop, the program will continue to cycle indefinitely.
-
-+ Modify your code to look like this:
++ A `Buzzer` has a `beep()` method which works like an `LED`'s `blink`. Try it out:
 
     ```python
-    from gpiozero import LED, Button
-    from signal import pause
-
-    led = LED(17)
-    button = Button(2)
-
-    button.when_pressed = led.on
-    button.when_released = led.off
-
-    pause()
+    while True:
+        buzzer.beep()
     ```
-
-+ Save and run the program. Now when the button is pressed, the LED will light up. It will turn off again when the button is released.

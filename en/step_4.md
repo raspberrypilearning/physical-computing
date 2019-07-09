@@ -1,15 +1,30 @@
-## Lighting an LED
+## Switching an LED on and off
 
-LEDs are delicate little things. If you put too much current through them they will pop (sometimes quite spectacularly). To limit the current going through the LED, you should always use a resistor in series with it.
+GPIO Zero is a new Python library which provides a simple interface to everyday GPIO components. It comes installed by default in Raspbian.
 
-Try connecting the long leg of an LED to the Pi's 3V3 and the short leg to a GND pin. The resistor can be anything over about 50Ω.
++ Open IDLE.
 
-![](images/led-3v3.png)
+[[[rpi-gui-idle-opening]]]
 
-The LED should light up. It will always be on, because it's connected to a 3V3 pin, which is itself always on.
++ You can switch an LED on and off by typing commands directly into the Python interpreter window (also known as the Python **shell**). Let's do this by first importing the GPIO Zero library. You also need to tell the Pi which GPIO pin you are using - in this case pin 17. Next to the chevrons `>>>`, type:
 
-Now try moving it from 3V3 to GPIO pin 17:
+    ``` python
+    from gpiozero import LED
+    led = LED(17)
+    ```
 
-![](images/led-gpio17.png)
+    Press **Enter** on the keyboard.
 
-The LED should now turn off, but now it's on a GPIO pin, and can therefore be controlled by code.
++ To make the LED switch on, type the following and press **Enter**:
+
+    ``` python
+    led.on()
+    ```
+
++ To make it switch off you can type:
+
+    ```python
+    led.off()
+    ```
+
++ Your LED should switch on and then off again. But that's not all you can do.
