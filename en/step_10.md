@@ -32,15 +32,9 @@ To get started, you'll need to place all the components on the breadboard and co
 
 ### Dive into Python
 
-Open the Python application IDLE and get started by testing out the button.
++ Create a new file by clicking **New**. 
 
-+ Open **Python 3** from the main menu:
-
-    ![Python 3](images/python3-app-menu.png)
-
-+ Create a new file by clicking **File** > **New File**. This will open up a second window.
-
-+ Save the new file straight away by clicking **File** > **Save**; name the file `trafficlights.py` and save it in your home folder.
++ Save the new file straight away by clicking **Save**; name the file `trafficlights.py`.
 
 + Enter the following code:
 
@@ -55,9 +49,9 @@ Open the Python application IDLE and get started by testing out the button.
 
     In GPIO Zero, you create an object for each component used. Each component interface must be imported from the `gpiozero` module, and an instance created on the GPIO pin number to which it is connected.
 
-+ Save and run the code by pressing `Ctrl + S` and `F5`.
++ Save and run the code.
 
-+ This will bring the original Python window into focus and will be constantly printing `False`. When you press the button this will switch to `True`, and when you let go it will return to `False`.
++ In the shell it will be constantly printing `False`. When you press the button this will switch to `True`, and when you let go it will return to `False`.
 
     `button.is_pressed` is a property of the `button` object, which provides the state of the button (pressed or not) at any given time.
 

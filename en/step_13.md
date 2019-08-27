@@ -14,38 +14,17 @@ The circuit connects to two GPIO pins (one for echo, one for trigger), the groun
 
 To use the ultrasonic distance sensor in Python, you need to know which GPIO pins the echo and trigger are connected to.
 
-+ Open Python 3.
 
-+ In the shell, enter the following line to import `DistanceSensor` from the GPIO Zero library:
++ Use the following code to read the `DistanceSensor`.
 
     ```python
     from gpiozero import DistanceSensor
-    ```
-
-    After each line, press **Enter** and the command will be executed immediately.
-
-+ Create an instance of `DistanceSensor` using your echo and trigger pins:
-
-    ```python
     ultrasonic = DistanceSensor(echo=17, trigger=4)
-    ```
-
-+ See what distance it shows:
-
-    ```python
-    ultrasonic.distance
-    ```
-
-    You should see a number: this is the distance to the nearest object, in metres.
-
-+ Try using a loop to print the distance continuously, while waving your hand in front of the sensor to alter the distance reading:
-
-    ```python
     while True:
         print(ultrasonic.distance)
     ```
 
-    The value should get smaller the closer your hand is to the sensor. Press **Ctrl + C** to exit the loop.
++ The value should get smaller the closer your hand is to the sensor. Press **Stop** to exit the loop.
 
 ### Ranges
 

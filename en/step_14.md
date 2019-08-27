@@ -44,9 +44,9 @@ A potentiometer's pins are ground, data, and 3V3. This means you connect it to g
 
 Now your potentiometer is connected and its value can be read from Python!
 
-+ Open **Python 3** from the main menu.
++ Open **Mu** from the main menu.
 
-+ In the shell, start by importing the `MCP3008` class from the GPIO Zero library:
++ Start by importing the `MCP3008` class from the GPIO Zero library:
 
     ```python
     from gpiozero import MCP3008
@@ -66,7 +66,7 @@ Now your potentiometer is connected and its value can be read from Python!
     print(pot.value)
     ```
 
-    You should see a number between 0 and 1. This represents how far the dial is turned.
++ Run your code. You should see a number between 0 and 1. This represents how far the dial is turned.
 
 + Now read the value in a loop:
 
