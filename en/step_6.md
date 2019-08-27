@@ -6,9 +6,9 @@ Now you're able to control an output component (an LED), let's connect and contr
 
     ![](images/button.png)
 
-+ Create a new file by clicking **File > New file**.
++ Create a new file by clicking **New**.
 
-+ Save the new file by clicking **File > Save**. Save the file as `gpio_button.py`.
++ Save the new file by clicking **Save**. Save the file as `gpio_button.py`.
 
 + This time you'll need the `Button` class, and to tell it that the button is on pin 2. Write the following code in your new file:
 
@@ -24,6 +24,6 @@ Now you're able to control an output component (an LED), let's connect and contr
     print('You pushed me')
     ```
 
-+ Save with **Ctrl + S** and run the code with **F5**.
++ Save and run the code.
 
 + Press the button and your text will appear.

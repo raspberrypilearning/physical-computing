@@ -2,9 +2,9 @@
 
 You can now combine your two programs written so far to control the LED using the button.
 
-+ Create a new file by clicking **File > New file**.
++ Create a new file by clicking **New**.
 
-+ Save the new file by clicking **File > Save**. Save the file as `gpio_control.py`.
++ Save the new file by clicking **Save**. Save the file as `gpio_control.py`.
 
 + Now write the following code:
 
