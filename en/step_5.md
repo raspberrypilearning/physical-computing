@@ -2,9 +2,9 @@
 
 With the help of the `time` library and a little loop, you can make the LED flash.
 
-+ Create a new file by clicking **File > New file**.
++ Create a new file by clicking **New**.
 
-+ Save the new file by clicking **File > Save**. Save the file as `gpio_led.py`.
++ Save the new file by clicking **Save**. Save the file as `gpio_led.py`.
 
 + Enter the following code to get started:
 
@@ -21,6 +21,6 @@ With the help of the `time` library and a little loop, you can make the LED flas
         sleep(1)
     ```
 
-+ Save with **Ctrl + S** and run the code with **F5**.
++ Save the file and run the code with by clicking on **Run**.
 
-+ The LED should be flashing on and off. To exit the program press **Ctrl + C** on your keyboard.
++ The LED should be flashing on and off. To exit the program click **Stop**.
