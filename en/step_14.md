@@ -32,7 +32,7 @@ Alternatively, you could use the [Analog Zero](http://rasp.io/analogzero/) board
 
 Now that the ADC is connected to the Pi, you can wire devices up to the input channels. A potentiometer is a good example of an analogue input device: it's simply a variable resistor, and the Pi reads the voltage (from 0V to 3.3V).
 
-![Potentiometer](images/potentiometer.jpg)
+![Potentiometer](images/potentiometer.png)
 
 A potentiometer's pins are ground, data, and 3V3. This means you connect it to ground and a supply of 3V3, and read the actual voltage from the middle pin.
 
