@@ -5,11 +5,11 @@ Learn how to use the GPIO pins on your Raspberry Pi to interface with electronic
 ### What you will make
 
 --- no-print ---
-![Complete project](images/complete.gif)
+![Complete project example](images/complete.gif)
 --- /no-print ---
 
 --- print-only ---
-![Complete project](images/complete.png)
+![Complete project example](images/complete.png)
 --- /print-only ---
 
 --- collapse ---
