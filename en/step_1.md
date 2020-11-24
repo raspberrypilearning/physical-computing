@@ -38,6 +38,10 @@ As well as a Raspberry Pi with an SD card and the usual peripherals, you'll also
 |:--------:|:-------:|:--------:|:--------:|
 | ![capacitor](images/capacitor.png) | ![buzzer](images/piezo-buzzer.png) | ![motor controller](images/motor-controller.png) | ![battery pack](images/battery-pack.png) |
 
+| 1x MCP3008 ADC | Potentiometer |
+|:--------:|:-------:|
+| ![ADC](images/ADC.png) | ![potentiometer](images/potentiometer.png) |
+
 ### Software
 
 There are no additional software requirements for this resource beyond what is pre-installed in the current Raspbian image.
