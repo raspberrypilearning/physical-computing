@@ -34,13 +34,13 @@ As well as a Raspberry Pi with an SD card and the usual peripherals, you'll also
 |:--------:|:-------:|:--------:|:--------:|
 | ![LDR](images/ldr.png) | ![motor](images/motor2.png) | ![330 resistor](images/resistor-330r.png) | ![470 resistor](images/resistor-470r.png) |
 
-| 1x 1μF Capacitor | Buzzer | Motor Controller | Battery Pack |
-|:--------:|:-------:|:--------:|:--------:|
-| ![capacitor](images/capacitor.png) | ![buzzer](images/piezo-buzzer.png) | ![motor controller](images/motor-controller.png) | ![battery pack](images/battery-pack.png) |
+| 1x 1μF Capacitor | Buzzer | Motor Controller |
+|:--------:|:-------:|:--------:|
+| ![capacitor](images/capacitor.png) | ![buzzer](images/piezo-buzzer.png) | ![motor controller](images/motor-controller.png) |
 
-| 1x MCP3008 ADC | Potentiometer |
-|:--------:|:-------:|
-| ![ADC](images/ADC.png) | ![potentiometer](images/potentiometer.png) |
+| Battery Pack | 1x MCP3008 ADC | Potentiometer |
+|:--------:|:--------:|:-------:|
+| ![battery pack](images/battery-pack.png) | ![ADC](images/ADC.png) | ![potentiometer](images/potentiometer.png) |
 
 ### Software
 
