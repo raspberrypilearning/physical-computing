@@ -24,6 +24,8 @@ By putting a resistor in series with the capacitor, you can slow the speed at wh
 
 If you time how long it takes the capacitor's voltage to get over 1.8V (or be *on*), you can work out the resistance of the component in series with it.
 
+Many, but not all, capacitors are polarised which means they have a positive and a negative leg. In this case, the negative leg is shorter and should be marked with a '-' symbol.
+
 ### Light-dependent resistors
 
 An LDR (sometimes called a photocell) is a special type of resistor.
@@ -40,13 +42,13 @@ By placing a capacitor in series with an LDR, the capacitor will charge at diffe
 
 ![](images/Laser-tripwire_1-01.png)
 
-+  Now place a capacitor in series with the LDR. As the capacitor is a polar component, you must make sure the long leg is on the same track as the LDR leg.
++  Now place a capacitor in series with the LDR. As the capacitor is a polar component, you must make sure the positive, long leg is on the same track as the LDR leg.
 
-![](images/Laser-tripwire_2-01.png)
+![](images/Laser-tripwire_2-01.jpg)
 
 +  Finally, add jumper leads to connect the two components to your Raspberry Pi.
 
-![](images/Laser-tripwire_3-01.png)
+![](images/Laser-tripwire_3-01.jpg)
 
 ### Coding a light sensor
 
