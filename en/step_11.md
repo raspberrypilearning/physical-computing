@@ -44,11 +44,11 @@ By placing a capacitor in series with an LDR, the capacitor will charge at diffe
 
 +  Now place a capacitor in series with the LDR. As the capacitor is a polar component, you must make sure the long leg is on the same track as the LDR leg.
 
-![](images/Laser-tripwire_2-01.png)
+![](images/Laser-tripwire_2-01.jpg)
 
 +  Finally, add jumper leads to connect the two components to your Raspberry Pi.
 
-![](images/Laser-tripwire_3-01.png)
+![](images/Laser-tripwire_3-01.jpg)
 
 ### Coding a light sensor
 
