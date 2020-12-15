@@ -42,7 +42,7 @@ By placing a capacitor in series with an LDR, the capacitor will charge at diffe
 
 ![](images/Laser-tripwire_1-01.png)
 
-+  Now place a capacitor in series with the LDR. As the capacitor is a polar component, you must make sure the long leg is on the same track as the LDR leg.
++  Now place a capacitor in series with the LDR. As the capacitor is a polar component, you must make sure the positive, long leg is on the same track as the LDR leg.
 
 ![](images/Laser-tripwire_2-01.jpg)
 
