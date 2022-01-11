@@ -1,3 +1,4 @@
+---
 title: Physical Computing with Python
 hero_image: images/cover.png
 subtitle: Getting started with physical computing
@@ -16,8 +17,9 @@ software: python
 site_areas: projects
 version: 3
 last_tested: 2017-01-01
-steps: 
+steps:
 - title: Introduction
+  completion: engaged
 - title: GPIO pins
 - title: Lighting an LED
 - title: Switching an LED on and off
@@ -31,5 +33,6 @@ steps:
 - title: Using a PIR sensor
 - title: Using an ultrasonic distance sensor
 - title: Analogue inputs
+  completion: internal
 - title: Using motors
 - title: What next?
