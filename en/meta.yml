@@ -19,9 +19,10 @@ version: 3
 last_tested: 2017-01-01
 steps:
 - title: Introduction
-  completion: engaged
 - title: GPIO pins
 - title: Lighting an LED
+  completion:
+  - engaged
 - title: Switching an LED on and off
 - title: Flashing an LED
 - title: Using buttons to get input
@@ -33,6 +34,7 @@ steps:
 - title: Using a PIR sensor
 - title: Using an ultrasonic distance sensor
 - title: Analogue inputs
-  completion: internal
 - title: Using motors
+  completion:
+  - internal
 - title: What next?
