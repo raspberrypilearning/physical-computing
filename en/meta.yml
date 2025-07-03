@@ -37,4 +37,5 @@ steps:
 - title: Using motors
   completion:
   - internal
-- title: What next?
+  completion:
+  - external
